@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Page</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="timer.css">
 </head>
 <body>
     <div class="container">
         <div class="logo"></div>
         <h1>Game Stopwatch</h1>
         <div id="stopwatch">00:00</div>
-        <div class="reset-container">
+        <div class="button-container">
             <button id="startStopButton">Start Stopwatch</button>
         </div>
     </div>
@@ -36,7 +36,7 @@
             stopwatchDisplay.textContent = formatTime(elapsedTime);
         }
 
-        startStopButton.addEventListener('click', () => {
+        function startStopwatch() {
             if (!isRunning) {
                 // Start the stopwatch
                 startTime = new Date().getTime() - elapsedTime; // Adjust for any existing elapsed time
@@ -61,15 +61,14 @@
                     window.location.href = 'results.html'; // Replace with your target URL
                 }, 2000); // 2000 milliseconds = 2 seconds
             }
-        });
+        }
 
-        resetButton.addEventListener('click', () => {
-            clearInterval(timer);
-            elapsedTime = 0;
-            stopwatchDisplay.textContent = formatTime(elapsedTime);
-            startStopButton.textContent = 'Start Stopwatch'; // Reset button text
-            startStopButton.disabled = false;
-            isRunning = false; // Set the stopwatch as stopped
+        startStopButton.addEventListener('click', startStopwatch);
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') { // Check if the Enter key is pressed
+                startStopwatch();
+            }
         });
     </script>
 </body>
