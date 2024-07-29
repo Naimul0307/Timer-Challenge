@@ -1,0 +1,63 @@
+To convert your web project into a desktop application, especially if it's built using HTML, CSS, and JavaScript, you can use Electron. Electron allows you to wrap your web application into a native desktop application that can run on Windows, macOS, and Linux.
+
+0. npm init -y to creat package.json
+
+1.Install Electron:
+npm install -g electron
+2.main.js
+const { app, BrowserWindow } = require('electron');
+const path = require('path');
+const url = require('url');
+
+
+function createWindow() {
+    mainWindow = new BrowserWindow({
+      width: 800,
+      height: 600,
+      fullscreen: true, // Start in full-screen mode
+      autoHideMenuBar: true, // Hide the menu bar
+      webPreferences: {
+        nodeIntegration: true,
+        contextIsolation: false,
+      }
+    });
+
+  mainWindow.loadURL(url.format({
+    pathname: path.join(__dirname, 'public', 'index.html'),  // Adjust path to your HTML file
+    protocol: 'file:',
+    slashes: true
+  }));
+
+  // Open DevTools (remove for production)
+  // mainWindow.webContents.openDevTools();
+}
+
+app.whenReady().then(createWindow);
+
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
+});
+
+app.on('activate', () => {
+  if (BrowserWindow.getAllWindows().length === 0) {
+    createWindow();
+  }
+});
+3.Create a package.json
+{
+  "name": "electron-app",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package-win": "electron-packager . electron-app --platform=win32 --arch=x64 --out=dist --electron-version=16.0.5 --overwrite"
+  },
+  "devDependencies": {
+    "electron": "^16.0.5",
+    "electron-packager": "^16.4.0"
+  }
+}
+4.npm start
+5.npm run package-win or npm run package

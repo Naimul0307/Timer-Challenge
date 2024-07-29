@@ -1,0 +1,16 @@
+"build": {
+  "appId": "com.example.timerchallenge",
+  "productName": "Timer Challenge",
+  "files": [
+    "game.html",
+    "user.html",
+    "results.html",
+    "style.css",
+    "timer.css",
+    "main.js",
+    "preload.js"
+  ],
+  "directories": {
+    "output": "dist"
+  }
+}
