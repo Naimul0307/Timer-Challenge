@@ -32,7 +32,7 @@
         // Format and display the scores
         if (topScores.length > 0) {
             resultDisplay.innerHTML = topScores.map((scoreEntry, index) => 
-                `<li class="${index === 0 ? 'highlight' : ''}">
+                `<li>
                     <div>${scoreEntry.username}</div>
                     <div>${formatTime(scoreEntry.score)}</div>
                 </li>`

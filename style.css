@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #1c1c1c;
+    background: linear-gradient(145deg, #6aa9ca, #2d6583);
     color: #e0e0e0;
     display: flex;
     justify-content: center;
@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-    background-color: #2e2e2e;
+    background: linear-gradient(135deg, #6aa9ca, #2d6583);
     border-radius: 20px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
     padding: 40px;
@@ -36,7 +36,7 @@ body {
 }
 
 h1 {
-    color: #00bcd4;
+    color: #e0e0e0;
     font-size: 2.5em;
     margin-bottom: 30px;
     margin-top: 60px; /* Adjusted to make space for the logo */
@@ -75,35 +75,7 @@ button:hover {
     transform: translateY(-2px);
 }
 
-#stopwatch {
-    font-size: 4em;
-    margin-bottom: 40px;
-    padding: 20px 40px;
-    background-color: #3a3a3a;
-    border: 2px solid #4d4d4d;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    color: #ff0000; /* Neon green color */
-    text-shadow: 2px 2px 8px rgba(0, 255, 0, 0.7); /* Glow effect */
-}
-
-button:disabled {
-    background-color: #555;
-    cursor: not-allowed;
-}
-
-.reset-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.reset-container button {
-    margin-left: 10px;
-}
-
-        
+     
 ul {
     list-style-type: none;
     padding: 0;
@@ -120,19 +92,46 @@ li {
     border: 1px solid #4d4d4d;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-.highlight {
-    background-color: #ffd700;
-    color: #333;
-    font-weight: bold;
-}
+
 .scoreboard-heading {
     display: flex;
     justify-content: space-between;
-    background: linear-gradient(135deg, #00bcd4, #007bff);
+    background: linear-gradient(135deg, #6aa9ca, #2d6583);
     color: #fff;
     font-size: 1.5em;
     font-weight: bold;
     padding: 15px;
     border-bottom: 1px solid #4d4d4d;
     border-radius: 10px 10px 0 0;
+}
+
+#scoreList {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+#scoreList li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #444;
+}
+
+#scoreList li:nth-child(even) {
+    background-color: #2d6583;
+}
+
+#scoreList li:nth-child(odd) {
+    background-color: #6aa9ca;
+}
+
+#scoreList li.highlight {
+    background-color: #ffeb3b; /* Highlight color for the top score */
+    color: #000;
+}
+
+#scoreList div {
+    flex: 1;
+    text-align: center;
 }
