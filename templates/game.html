@@ -19,16 +19,16 @@
     <!-- Success Modal -->
     <div id="successModal" class="modal">
         <div class="modal-content">
-            <h2>Congratulations!</h2>
-            <p>Your time: <span id="finalTime">00:00</span></p>
+            <!-- <h2>Congratulations!</h2>
+            <p>Your time was between 10 and 10.50 seconds.</p> -->
         </div>
     </div>
 
     <!-- Error Modal -->
     <div id="errorModal" class="modal">
         <div class="modal-content">
-            <h2>Sorry, Better Luck Next Time!</h2>
-            <p>Your time is not 10 seconds.</p>
+            <!-- <h2>Sorry, Better Luck Next Time!</h2>
+            <p>Your time was not between 10 and 10.50 seconds.</p> -->
         </div>
     </div>
 
@@ -37,12 +37,11 @@
         const startStopButton = document.getElementById('startStopButton');
         const successModal = document.getElementById('successModal');
         const errorModal = document.getElementById('errorModal');
-        const finalTime = document.getElementById('finalTime');
 
         let timer;
         let startTime;
         let elapsedTime = 0;
-        let isRunning = false; // Variable to track if the stopwatch is running
+        let isRunning = false;
 
         function formatTime(ms) {
             const seconds = Math.floor(ms / 1000);
@@ -75,25 +74,22 @@
                 scores.push({ username, score });
                 localStorage.setItem('scores', JSON.stringify(scores));
 
-                // Check if the time is exactly 10 seconds
-                if (elapsedTime >= 10000 && elapsedTime < 11000) {
-                    // Update modal with final time and show it
-                    finalTime.textContent = formatTime(elapsedTime);
-                    successModal.style.display = 'block';
+                console.log(`Elapsed Time: ${elapsedTime} ms`); // Debugging line
 
-                    // Redirect to the results page after 2 seconds
-                    setTimeout(() => {
-                        window.location.href = 'results.html'; // Replace with your target URL
-                    }, 2000); // 2000 milliseconds = 2 seconds
+                // Check if the time is between 10 and 10.50 seconds
+                // if (Math.abs(elapsedTime - 10000) <= 10) 
+                if (elapsedTime >= 10000 && elapsedTime <= 10500) {
+                    // Show success modal
+                    successModal.style.display = 'block';
                 } else {
                     // Show error modal
                     errorModal.style.display = 'block';
-
-                    // Redirect to the results page after 2 seconds
-                    setTimeout(() => {
-                        window.location.href = 'results.html'; // Replace with your target URL
-                    }, 2000); // 2000 milliseconds = 2 seconds
                 }
+                
+                // Redirect to the results page after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'results.html'; // Replace with your target URL
+                }, 2000); // 2000 milliseconds = 2 seconds
             }
         }
 

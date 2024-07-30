@@ -144,7 +144,7 @@ button:disabled {
 
 /* Error Modal */
 #errorModal .modal-content {
-    background-image: url('../images/error.png'); /* Error background image */
+    background-image: url('../images/error.jpg'); /* Error background image */
     opacity: 1; /* Set opacity for the success background image */
 }
 
