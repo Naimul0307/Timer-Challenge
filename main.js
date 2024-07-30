@@ -1,27 +1,22 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
-const url = require('url');
+
+let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    fullscreen: true, // Start in full-screen mode
-    autoHideMenuBar: true, // Hide the menu bar
+    fullscreen: true,
+    autoHideMenuBar: true,
     webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
+      preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: true, // Enable context isolation
+      nodeIntegration: false // Disable nodeIntegration
     }
   });
 
-  mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'user.html'),
-    protocol: 'file:',
-    slashes: true
-  }));
-
-  // Remove DevTools opening for production
-  // mainWindow.webContents.openDevTools();
+  mainWindow.loadFile(path.join(__dirname, 'templates', 'user.html'));
 
   mainWindow.on('closed', function () {
     mainWindow = null;

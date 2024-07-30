@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results Page</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo"></div>
+        <h1>Scoreboard</h1>
+        <div class="scoreboard-heading">
+            <div>User</div>
+            <div>Time</div>
+        </div>
+        <ul id="scoreList"></ul>
+    </div>
+
+    <script>
+        const resultDisplay = document.getElementById('scoreList');
+
+        // Retrieve and parse the scores from localStorage
+        const scores = JSON.parse(localStorage.getItem('scores')) || [];
+
+        // Sort scores by highest value first
+        scores.sort((a, b) => b.score - a.score);
+
+        // Limit to top 10 scores
+        const topScores = scores.slice(0, 10);
+
+        // Format and display the scores
+        if (topScores.length > 0) {
+            resultDisplay.innerHTML = topScores.map((scoreEntry, index) => 
+                `<li>
+                    <div>${scoreEntry.username}</div>
+                    <div>${formatTime(scoreEntry.score)}</div>
+                </li>`
+            ).join('');
+        } else {
+            resultDisplay.innerHTML = '<li>No scores available.</li>';
+        }
+
+        function formatTime(ms) {
+            const seconds = Math.floor(ms / 1000);
+            const milliseconds = Math.floor(ms % 1000 / 10); // Convert milliseconds to two-digit format
+            return `${String(seconds).padStart(2, '0')}:${String(milliseconds).padStart(2, '0')}`;
+        }
+
+        // Redirect to another page after 10 seconds
+        setTimeout(() => {
+            window.location.href = 'user.html'; // Replace with your target URL
+        }, 10000); // 10000 milliseconds = 10 seconds
+    </script>
+</body>
+</html>

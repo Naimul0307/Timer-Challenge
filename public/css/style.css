@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(145deg, #6aa9ca, #2d6583);
+    background: url('../images//background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: linear-gradient(135deg, #6aa9ca, #2d6583);
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    background-image: url('../images/logo.png'); /* Add the path to your logo image here */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: -60px;
+    left: calc(50% - 50px);
+    border-radius: 50%;
+    background-color: #2e2e2e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    color: #e0e0e0;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    margin-top: 60px; /* Adjusted to make space for the logo */
+}
+
+label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 15px;
+    border: 1px solid #4d4d4d;
+    border-radius: 10px;
+    background-color: #3a3a3a;
+    color: #e0e0e0;
+    margin-bottom: 30px;
+    font-size: 1.2em;
+}
+
+button {
+    font-size: 1.5em;
+    padding: 15px 30px;
+    margin: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #00bcd4;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+button:hover {
+    background-color: #0097a7;
+    transform: translateY(-2px);
+}
+
+     
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2em;
+    background-color: #3a3a3a;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #4d4d4d;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.scoreboard-heading {
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #6aa9ca, #2d6583);
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 15px;
+    border-bottom: 1px solid #4d4d4d;
+    border-radius: 10px 10px 0 0;
+}
+
+#scoreList {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+#scoreList li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #444;
+}
+
+#scoreList li:nth-child(even) {
+    background-color: #2d6583;
+}
+
+#scoreList li:nth-child(odd) {
+    background-color: #6aa9ca;
+}
+
+#scoreList li.highlight {
+    background-color: #ffeb3b; /* Highlight color for the top score */
+    color: #000;
+}
+
+#scoreList div {
+    flex: 1;
+    text-align: center;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Page</title>
+    <link rel="stylesheet" href="../public/css/timer.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo"></div>
+        <h1>Game Stopwatch</h1>
+        <div id="stopwatch">00:00</div>
+        <div class="button-container">
+            <button id="startStopButton" hidden>Start Stopwatch</button>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h2>Congratulations!</h2>
+            <p>Your time: <span id="finalTime">00:00</span></p>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <h2>Sorry, Better Luck Next Time!</h2>
+            <p>Your time is not 10 seconds.</p>
+        </div>
+    </div>
+
+    <script>
+        const stopwatchDisplay = document.getElementById('stopwatch');
+        const startStopButton = document.getElementById('startStopButton');
+        const successModal = document.getElementById('successModal');
+        const errorModal = document.getElementById('errorModal');
+        const finalTime = document.getElementById('finalTime');
+
+        let timer;
+        let startTime;
+        let elapsedTime = 0;
+        let isRunning = false; // Variable to track if the stopwatch is running
+
+        function formatTime(ms) {
+            const seconds = Math.floor(ms / 1000);
+            const milliseconds = Math.floor(ms % 1000 / 10); // Convert milliseconds to two-digit format
+            return `${String(seconds).padStart(2, '0')}:${String(milliseconds).padStart(2, '0')}`;
+        }
+
+        function updateStopwatch() {
+            elapsedTime = new Date().getTime() - startTime;
+            stopwatchDisplay.textContent = formatTime(elapsedTime);
+        }
+
+        function startStopwatch() {
+            if (!isRunning) {
+                // Start the stopwatch
+                startTime = new Date().getTime() - elapsedTime; // Adjust for any existing elapsed time
+                timer = setInterval(updateStopwatch, 10); // Update every 10 milliseconds
+                startStopButton.textContent = 'Stop Stopwatch'; // Change button text to 'Stop Stopwatch'
+                isRunning = true; // Set the stopwatch as running
+            } else {
+                // Stop the stopwatch
+                clearInterval(timer);
+                startStopButton.textContent = 'Start Stopwatch'; // Change button text to 'Start Stopwatch'
+                isRunning = false; // Set the stopwatch as stopped
+
+                // Save the score automatically
+                const username = localStorage.getItem('username');
+                const score = elapsedTime;
+                const scores = JSON.parse(localStorage.getItem('scores')) || [];
+                scores.push({ username, score });
+                localStorage.setItem('scores', JSON.stringify(scores));
+
+                // Check if the time is exactly 10 seconds
+                if (elapsedTime >= 10000 && elapsedTime < 11000) {
+                    // Update modal with final time and show it
+                    finalTime.textContent = formatTime(elapsedTime);
+                    successModal.style.display = 'block';
+
+                    // Redirect to the results page after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'results.html'; // Replace with your target URL
+                    }, 2000); // 2000 milliseconds = 2 seconds
+                } else {
+                    // Show error modal
+                    errorModal.style.display = 'block';
+
+                    // Redirect to the results page after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'results.html'; // Replace with your target URL
+                    }, 2000); // 2000 milliseconds = 2 seconds
+                }
+            }
+        }
+
+        startStopButton.addEventListener('click', startStopwatch);
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') { // Check if the Enter key is pressed
+                startStopwatch();
+            }
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === successModal || event.target === errorModal) {
+                successModal.style.display = 'none';
+                errorModal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

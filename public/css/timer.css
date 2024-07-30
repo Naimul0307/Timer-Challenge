@@ -1,0 +1,156 @@
+
+@font-face {
+    font-family: 'Digital-7';
+    src: url('../fonts/digital-7.ttf'); /* IE9 Compat Modes */
+    src: url('../fonts/digital-7\ \(italic\).ttf') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/digital-7\ \(mono\ italic\).ttf') format('woff'), /* Modern Browsers */
+         url('../fonts/digital-7\ \(mono\).ttf') format('truetype'); /* Safari, Android, iOS */
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(0,0,0,255);
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+.container {
+    background-color: rgba(0,0,0,255);
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    background-image: url('../images//logo.png'); /* Add the path to your logo image here */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    background-color: #2e2e2e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px; /* Space between logo and title */
+}
+
+h1 {
+    color: rgba(230,230,230,255);
+    font-size: 2.5em;
+    margin: 0; /* Remove margin to center the content */
+}
+
+#stopwatch {
+    font-family: 'Digital-7', sans-serif;
+    font-size: 30em; /* Make the stopwatch text larger */
+    margin: 10px 0; /* Space above and below the stopwatch */
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,255);
+    color: rgba(252,47,26,255); /* Neon green color */
+    text-shadow: 2px 2px 8px rgba(252,47,26,255); /* Glow effect */
+    flex: 1; /* Allow the stopwatch to grow and fill available space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Space between stopwatch and button */
+}
+
+button {
+    font-size: 1.5em;
+    padding: 15px 30px;
+    margin: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #00bcd4;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #0097a7;
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: hidden; /* Prevent scrolling */
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+}
+
+/* Full-screen modal content */
+.modal-content {
+    position: absolute; /* Position it absolutely within the modal */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for centering */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-size: cover; /* Cover the entire modal container */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Avoid repeating the image */
+    display: flex; /* Use flexbox for centering content */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text */
+    color: #fff; /* Default text color */
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in width and height */
+}   
+
+/* Success Modal */
+#successModal .modal-content {
+    background-image: url('../images/success.jpg'); /* Success background image */
+    opacity: 1; /* Set opacity for the success background image */
+}
+
+/* Error Modal */
+#errorModal .modal-content {
+    background-image: url('../images/error.png'); /* Error background image */
+    opacity: 1; /* Set opacity for the success background image */
+}
+
+h2, p {
+    margin: 0;
+    padding: 0;
+    color:  rgb(255, 255, 255);
+    font-size: 2.5em;
+}
